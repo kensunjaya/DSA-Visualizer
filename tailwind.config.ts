@@ -1,5 +1,7 @@
 import type { Config } from "tailwindcss";
 
+const presets = require("./themes/presets");
+
 const config: Config = {
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
@@ -8,6 +10,7 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      ...presets,
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
