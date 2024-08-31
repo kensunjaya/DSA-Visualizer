@@ -1,9 +1,25 @@
 import { LinkedListNodeProps } from "@/interface/linked-list-interface";
-import { useEffect } from "react";
+import { motion } from "framer-motion";
 import { IoArrowForwardSharp } from "react-icons/io5";
 
-export const LinkedListNode = ({value, next, index, traversedId, id}: LinkedListNodeProps & {index : number, traversedId: string}) => {
+export const LinkedListNode = ({value, next, index, traversedId, id, mode}: LinkedListNodeProps & {index : number, traversedId: string, mode: string}) => {
   return (
+    <>
+    {traversedId === id ? (
+    <motion.div
+      initial={{ opacity: 0, scale: 0.5 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{
+        duration: 0.2,
+        ease: [0, 0.71, 0.2, 1.01],
+        scale: {
+          type: "linear",
+          damping: 5,
+          stiffness: 100,
+          restDelta: 0.001
+        }
+      }}
+    >
     <div className="flex flex-col">
       <div className="flex items-center">
         <div className={`w-fit h-fit border-4 border-black flex min-w-16 text-lg ${traversedId === id && 'bg-yellow-200'}`}>
@@ -14,7 +30,78 @@ export const LinkedListNode = ({value, next, index, traversedId, id}: LinkedList
       </div>
       {next === null && <div className="text-lg font-mono mt-2">tail</div>}
       {index === 0 && <div className="text-lg font-mono mt-2">head</div>}
-      
     </div>
+    </motion.div>
+    ) : (
+    (mode === "insertHead" && (
+      <motion.div
+      initial={{ x: -200 }}
+      animate={{ x: 0 }}
+      transition={{
+        duration: 0.2,
+        ease: [0, 0.71, 0.2, 1.01],
+        scale: {
+          type: "linear",
+          damping: 5,
+          stiffness: 100,
+          restDelta: 0.001
+        }
+      }}
+      >
+      <div className="flex flex-col">
+        <div className="flex items-center">
+          <div className={`w-fit h-fit border-4 border-black flex min-w-16 text-lg ${traversedId === id && 'bg-yellow-200'}`}>
+            <div className="p-3 w-full text-center font-mono">{value}</div>
+          </div>
+          <IoArrowForwardSharp size={40} />
+          {next === null && <div className="w-fit h-fit flex min-w-16 text-lg font-mono">null</div>}
+        </div>
+        {next === null && <div className="text-lg font-mono mt-2">tail</div>}
+        {index === 0 && <div className="text-lg font-mono mt-2">head</div>}
+      </div>
+      </motion.div>
+    )) ||
+    (mode === "insertTail" && (
+    <div className="flex flex-col">
+      <div className="flex items-center">
+        <div className={`w-fit h-fit border-4 border-black flex min-w-16 text-lg ${traversedId === id && 'bg-yellow-200'}`}>
+          <div className="p-3 w-full text-center font-mono">{value}</div>
+        </div>
+        <IoArrowForwardSharp size={40} />
+        {next === null && <div className="w-fit h-fit flex min-w-16 text-lg font-mono">null</div>}
+      </div>
+      {next === null && <div className="text-lg font-mono mt-2">tail</div>}
+      {index === 0 && <div className="text-lg font-mono mt-2">head</div>}
+    </div>
+    )) ||
+    (mode === "insertMiddle" && (
+    <div className="flex flex-col">
+      <div className="flex items-center">
+        <div className={`w-fit h-fit border-4 border-black flex min-w-16 text-lg ${traversedId === id && 'bg-yellow-200'}`}>
+          <div className="p-3 w-full text-center font-mono">{value}</div>
+        </div>
+        <IoArrowForwardSharp size={40} />
+        {next === null && <div className="w-fit h-fit flex min-w-16 text-lg font-mono">null</div>}
+      </div>
+      {next === null && <div className="text-lg font-mono mt-2">tail</div>}
+      {index === 0 && <div className="text-lg font-mono mt-2">head</div>}
+    </div>
+    )) ||
+    (mode === "" && (
+    <div className="flex flex-col">
+      <div className="flex items-center">
+        <div className={`w-fit h-fit border-4 border-black flex min-w-16 text-lg ${traversedId === id && 'bg-yellow-200'}`}>
+          <div className="p-3 w-full text-center font-mono">{value}</div>
+        </div>
+        <IoArrowForwardSharp size={40} />
+        {next === null && <div className="w-fit h-fit flex min-w-16 text-lg font-mono">null</div>}
+      </div>
+      {next === null && <div className="text-lg font-mono mt-2">tail</div>}
+      {index === 0 && <div className="text-lg font-mono mt-2">head</div>}
+    </div>
+    ))
+
+  )}
+  </>
   )
-}
+} 
