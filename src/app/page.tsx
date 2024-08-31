@@ -67,13 +67,7 @@ export default function Home() {
     const newNode = { value: value, next: null, id: uuidv4() } as LinkedListNodeProps;
   
     if (nodes.length === 0) {
-      setNodes([newNode]);
-      setValue("");
-      setTimeout(() => {
-        setTraversedId("");
-        setMode("");
-      }, 1000);
-      setTraversedId(newNode.id);
+      insertHead();
       return;
     }
   
