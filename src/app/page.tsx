@@ -7,6 +7,7 @@ import { useState } from "react";
 export default function Home() {
   const [value, setValue] = useState<string>("");
   const [traversedId, setTraversedId] = useState<string>("");
+  const [insertedIndex, setInsertedIndex] = useState<number | null>(null);
   const [mode, setMode] = useState<string>("");
   const [nodes, setNodes] = useState<LinkedListNodeProps[]>([]);
 
@@ -86,22 +87,30 @@ export default function Home() {
       return;
     } else {
       let index = 0;
+      setTraversedId(nodes[index].id);
       while (nodes[index].next !== null && parseFloat(newNode.value) > parseFloat(nodes[index].value)) {
         await new Promise<void>((resolve) => {
           setTimeout(() => {
-            setTraversedId(nodes[index].id);
-            resolve();
             index++;
-          }, 1000); // Increase delay with each iteration
+            if (nodes[index].next !== null && parseFloat(newNode.value) > parseFloat(nodes[index].value)) {
+              setTraversedId(nodes[index].id);
+            }
+            resolve();
+          }, 500); // Increase delay with each iteration
         });
       }
-  
       // Once traversal is complete, update the nodes
       nodes[index - 1].next = newNode.id;
       newNode.next = nodes[index].id;
       setNodes([...nodes.slice(0, index), newNode, ...nodes.slice(index)]);
-      setValue("");
-      setTraversedId("");
+      setTraversedId(newNode.id);
+      setTimeout(() => {
+        setValue("");
+        setInsertedIndex(null);
+        setTraversedId("");
+        
+        setMode("");
+      }, 1000); // Increase delay with each iteration
     }
   };
   
@@ -128,7 +137,7 @@ export default function Home() {
       </button>
       <div className="flex flex-row">
       {nodes.map((node, index) => (
-        <LinkedListNode key={index} value={node.value} id={node.id} next={node.next} index={index} traversedId={traversedId} mode={mode} />
+        <LinkedListNode key={index} value={node.value} id={node.id} next={node.next} index={index} traversedId={traversedId} mode={mode} newNodeValue={value} insertedIndex={insertedIndex} />
       ))}
       </div>
     </main>
