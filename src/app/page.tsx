@@ -9,15 +9,15 @@ export default function Home() {
   const router = useRouter();
   
   return (
-    <main className="min-h-screen w-screen p-5 flex">
+    <main className="min-h-screen w-screen p-5 flex font-ibm">
       <button 
-        className="hover:opacity-80 hover:shadow-lg p-3 bg-black text-white text-xl font-ibm w-fit h-fit"
+        className="hover:opacity-80 hover:shadow-lg p-3 bg-black text-white text-xl w-fit h-fit"
         onClick={() => router.push("/linked-list")}
       >
         Linked List
       </button>
       <button 
-        className="hover:opacity-80 hover:shadow-lg p-3 bg-black text-white text-xl font-ibm w-fit h-fit ml-3"
+        className="hover:opacity-80 hover:shadow-lg p-3 bg-black text-white text-xl w-fit h-fit ml-3"
         onClick={() => router.push("/sorting")}
       >
         Sorting

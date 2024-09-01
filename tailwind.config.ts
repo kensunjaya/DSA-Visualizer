@@ -1,6 +1,7 @@
 import type { Config } from "tailwindcss";
 
 const presets = require("./themes/presets");
+const tokens = require("./themes/tokens");
 
 const config: Config = {
   content: [
@@ -11,6 +12,7 @@ const config: Config = {
   theme: {
     extend: {
       ...presets,
+      ...tokens,
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
@@ -18,6 +20,8 @@ const config: Config = {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    require('daisyui'),
+  ],
 };
 export default config;

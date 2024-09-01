@@ -24,7 +24,7 @@ export const LinkedListNode = ({value, next, index, traversedId, id, mode, newNo
     >
     <div className="flex flex-col">
       <div className="flex items-center">
-        <div className={`w-fit h-fit border-4 border-black flex min-w-16 text-lg ${traversedId === id && 'bg-yellow-200'}`}>
+        <div className={`w-fit h-fit border-4 border-secondary flex min-w-16 text-lg ${traversedId === id && 'bg-third text-white'}`}>
           <div className="p-3 w-full text-center font-mono">{value}</div>
         </div>
         <IoArrowForwardSharp size={40} />
@@ -57,7 +57,7 @@ export const LinkedListNode = ({value, next, index, traversedId, id, mode, newNo
       >
       <div className="flex flex-col">
         <div className="flex items-center">
-          <div className={`w-fit h-fit border-4 border-black flex min-w-16 text-lg ${traversedId === id && 'bg-yellow-200'}`}>
+          <div className={`w-fit h-fit border-4 border-secondary flex min-w-16 text-lg ${traversedId === id && 'bg-yellow-200'}`}>
             <div className="p-3 w-full text-center font-mono">{value}</div>
           </div>
           <IoArrowForwardSharp size={40} />
@@ -71,7 +71,7 @@ export const LinkedListNode = ({value, next, index, traversedId, id, mode, newNo
     (mode === "insertTail" && (
     <div className="flex flex-col">
       <div className="flex items-center">
-        <div className={`w-fit h-fit border-4 border-black flex min-w-16 text-lg ${traversedId === id && 'bg-yellow-200'}`}>
+        <div className={`w-fit h-fit border-4 border-secondary flex min-w-16 text-lg ${traversedId === id && 'bg-yellow-200'}`}>
           <div className="p-3 w-full text-center font-mono">{value}</div>
         </div>
         <IoArrowForwardSharp size={40} />
@@ -84,7 +84,7 @@ export const LinkedListNode = ({value, next, index, traversedId, id, mode, newNo
     (mode === "insertMiddle" && (
       <div className="flex flex-col">
         <div className="flex items-center">
-          <div className={`w-fit h-fit border-4 border-black flex min-w-16 text-lg ${traversedId === id && 'bg-yellow-200'}`}>
+          <div className={`w-fit h-fit border-4 border-secondary flex min-w-16 text-lg ${traversedId === id && 'bg-yellow-200'}`}>
             <div className="p-3 w-full text-center font-mono">{value}</div>
           </div>
           <IoArrowForwardSharp size={40} />
@@ -98,7 +98,7 @@ export const LinkedListNode = ({value, next, index, traversedId, id, mode, newNo
     (mode === "" && (
     <div className="flex flex-col">
       <div className="flex items-center">
-        <div className={`w-fit h-fit border-4 border-black flex min-w-16 text-lg ${traversedId === id && 'bg-yellow-200'}`}>
+        <div className={`w-fit h-fit border-4 border-secondary flex min-w-16 text-lg ${traversedId === id && 'bg-yellow-200'}`}>
           <div className="p-3 w-full text-center font-mono">{value}</div>
         </div>
         <IoArrowForwardSharp size={40} />

@@ -90,10 +90,9 @@ export default function Home() {
               setTraversedId(nodes[index].id);
             }
             resolve();
-          }, 500); // Increase delay with each iteration
+          }, 500);
         });
       }
-      // Once traversal is complete, update the nodes
       nodes[index - 1].next = newNode.id;
       newNode.next = nodes[index].id;
       setNodes([...nodes.slice(0, index), newNode, ...nodes.slice(index)]);
@@ -110,26 +109,26 @@ export default function Home() {
   
   return (
     <main className="min-h-screen w-screen p-5">
-      <input type="text" className="border-black border p-2 mb-5" value={value} onChange={(e) => {setValue(e.target.value)}}/>
+      <input type="text" className="border-secondary text-secondary bg-transparent border p-2 mb-5" value={value} onChange={(e) => {setValue(e.target.value)}}/>
       <button 
-        className="bg-black text-white p-2 border border-black ml-3 hover:shadow-lg transition hover:opacity-80"
+        className="bg-secondary text-white p-2 border border-secondary ml-3 hover:shadow-lg transition hover:opacity-80"
         onClick={insertTail}
       >
         InsertTail
       </button>
       <button 
-        className="bg-black text-white p-2 border border-black ml-3 hover:shadow-lg transition hover:opacity-80"
+        className="bg-secondary text-white p-2 border border-secondary ml-3 hover:shadow-lg transition hover:opacity-80"
         onClick={insertHead}
       >
         InsertHead
       </button>
       <button 
-        className="bg-black text-white p-2 border border-black ml-3 hover:shadow-lg transition hover:opacity-80"
+        className="bg-secondary text-white p-2 border border-secondary ml-3 hover:shadow-lg transition hover:opacity-80"
         onClick={insertMiddle}
       >
         Insert Middle
       </button>
-      <div className="flex flex-row">
+      <div className="flex flex-row text-secondary">
       {nodes.map((node, index) => (
         <LinkedListNode key={index} value={node.value} id={node.id} next={node.next} index={index} traversedId={traversedId} mode={mode} newNodeValue={value} insertedIndex={insertedIndex} />
       ))}
