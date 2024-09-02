@@ -224,7 +224,7 @@ export default function Home() {
       <div className="flex flex-row justify-between">
         <button 
           disabled={isSorting}
-          className="bg-secondary text-white p-2 border border-secondary hover:shadow-lg transition hover:opacity-80"
+          className="bg-secondary text-white p-2 border border-secondary hover:shadow-lg transition hover:opacity-80 disabled:opacity-60"
           onClick={async () => {
             if (await checkSorted()) return;
             const start = Date.now();
@@ -239,14 +239,16 @@ export default function Home() {
         </button>
         <button 
           disabled={isSorting}
-          className="bg-secondary text-white p-2 border border-secondary ml-3 hover:shadow-lg transition hover:opacity-80"
+          className="bg-secondary text-white p-2 border border-secondary ml-3 hover:shadow-lg transition hover:opacity-80 disabled:opacity-60"
           onClick={async () => {
             if (await checkSorted()) return;
+            setIsSorting(true);
             const start = Date.now();
             setIsInitialState(false);
             mergeSort(items).then(() => {
               setTimeElapsed((Date.now() - start) / 1000);
               checkSorted();
+              setIsSorting(false);
             });
           }}
         >
@@ -254,7 +256,7 @@ export default function Home() {
         </button>
         <button 
           disabled={isSorting}
-          className="bg-secondary text-white p-2 border border-secondary ml-3 hover:shadow-lg transition hover:opacity-80"
+          className="bg-secondary text-white p-2 border border-secondary ml-3 hover:shadow-lg transition hover:opacity-80 disabled:opacity-60"
           onClick={async () => {
             if (await checkSorted()) return;
             const start = Date.now();
@@ -269,9 +271,9 @@ export default function Home() {
         </button>
         <button
           disabled={isSorting}
-          className="bg-secondary text-white p-2 border border-secondary ml-3 hover:shadow-lg transition hover:opacity-80"
-          onClick={async () => 
-          {if (await checkSorted()) return;
+          className="bg-secondary text-white p-2 border border-secondary ml-3 hover:shadow-lg transition hover:opacity-80 disabled:opacity-60"
+          onClick={async () => {
+            if (await checkSorted()) return;
             const start = Date.now();
             setIsInitialState(false);
             setIsSorting(true);
@@ -287,13 +289,13 @@ export default function Home() {
         
         <button 
           disabled={isSorting}
-          className="bg-fourth text-white p-2 border border-third ml-3 hover:shadow-lg transition hover:opacity-80"
+          className="bg-fourth text-white p-2 border border-third ml-3 hover:shadow-lg transition hover:opacity-80 disabled:opacity-60"
           onClick={() => randomize()}
         >
           Randomize
         </button>
         <button 
-          className="items-center ml-3 p-3 hover:opacity-80 hover:cursor-pointer text-lg" 
+          className="items-center ml-3 p-3 hover:opacity-80 hover:cursor-pointer text-lg disabled:opacity-60" 
           onClick={() => {setItems([...prevItems])}}
           disabled={isInitialState || isSorting}
         >
@@ -304,10 +306,10 @@ export default function Home() {
           <input type="range" min={0} max="10" value={speed} step={1} onChange={(e) => setSpeed(e.target.value)} className="accent-secondary w-full" />
         </div>
       </div>
-      <div className="w-full flex flex-row items-end mt-5 h-full">
-      {items.map((item, index) => (
-        <SortingBar key={index} value={item} color={currentBar === index ? 'bg-third' : 'bg-secondary'}/>
-      ))}
+      <div className="w-full flex flex-row items-end mt-5 h-full min-h-[52rem]">
+        {items.map((item, index) => (
+          <SortingBar key={index} value={item} color={currentBar === index ? 'bg-third' : 'bg-secondary'}/>
+        ))}
       </div>
       {(!isInitialState && isSorting) && <div className="w-full text-center p-3 font-semibold">Sorting...</div>}
       {(!isInitialState && !isSorting) && <div className="w-full text-center p-3 font-semibold">{`Time Elapsed: ${timeElapsed}s`}</div>}
