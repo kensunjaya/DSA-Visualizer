@@ -304,7 +304,7 @@ export default function Home() {
           <input type="range" min={0} max="10" value={speed} step={1} onChange={(e) => setSpeed(e.target.value)} className="accent-secondary w-full" />
         </div>
       </div>
-      <div className="w-full flex flex-row items-end mt-5 min-h-[51rem]">
+      <div className="w-full flex flex-row items-end mt-5 h-full">
       {items.map((item, index) => (
         <SortingBar key={index} value={item} color={currentBar === index ? 'bg-third' : 'bg-secondary'}/>
       ))}

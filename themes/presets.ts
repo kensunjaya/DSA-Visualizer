@@ -6,6 +6,7 @@ module.exports = {
     default: "#F9EBDE",
   },
   fontFamily: {
-    ibm: ["IBM Plex Sans", "sans-serif"],
+    ibm: ['"IBM Plex Sans"', "sans-serif"],
+    press: ['"Press Start 2P"', "cursive"],
   },
 };
