@@ -11,6 +11,8 @@ export default function Home() {
   const [timeElapsed, setTimeElapsed] = useState<number>(0);
   const [isInitialState, setIsInitialState] = useState<boolean>(true);
   const [speed, setSpeed] = useState<string>("8");
+  const [useBorder, setUseBorder] = useState<boolean>(true);
+  const [numberOfBars, setNumberOfBars] = useState<string>("80");
 
   const speedRef = useRef(speed);
 
@@ -31,6 +33,10 @@ export default function Home() {
   useEffect(() => {
     speedRef.current = speed;
   }, [speed]);
+
+  useEffect(() => {
+    randomize();
+  }, [numberOfBars]);
 
   const checkSorted = async () => {
     for (let i = 0; i < items.length; i++) {
@@ -209,7 +215,7 @@ export default function Home() {
   };
 
   const randomize = () => {
-    const items = Array.from({ length: 80 }, () => Math.floor(Math.random() * 50 + 1));
+    const items = Array.from({ length: parseInt(numberOfBars) }, () => Math.floor(Math.random() * 50 + 1));
     setItems(items);
     setPrevItems([...items]);
     setIsInitialState(true);
@@ -301,14 +307,51 @@ export default function Home() {
         >
           <FaUndoAlt className="text-secondary" />
         </button>
-        <div className="ml-auto w-[15%]">
-          <div className="font-semibold">Speed</div>
-          <input type="range" min={0} max="10" value={speed} step={1} onChange={(e) => setSpeed(e.target.value)} className="accent-secondary w-full" />
+        <div className="ml-auto flex w-[25%]">
+          <div className="inline-flex items-center font-ibm font-semibold">
+            <label className="flex items-center cursor-pointer relative" htmlFor="check-2">
+              <input type="checkbox"
+                checked={useBorder}
+                onChange={(e) => setUseBorder(e.target.checked)}
+                className="peer h-5 w-5 cursor-pointer transition-all appearance-none rounded hover:shadow-md border-secondary border-2 checked:bg-secondary checked:border-secondary"
+                id="check-2" />
+              <span className="absolute text-white opacity-0 peer-checked:opacity-100 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor"
+                  stroke="currentColor" stroke-width="1">
+                  <path fill-rule="evenodd"
+                  d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                  clip-rule="evenodd"></path>
+                </svg>
+              </span>
+            </label>
+            <label className="cursor-pointer ml-2 text-secondary" htmlFor="check-2">
+              Spacing
+            </label>
+          </div>
+          <select 
+            onChange={(e) => {
+              setNumberOfBars(e.target.value);
+            }} 
+            value={numberOfBars} 
+            className="optional:bg-primary border border-secondary font-semibold rounded-lg ml-10 px-2"
+          >
+            <option value={"10"}>10 bars</option>
+            <option value={"25"}>25 bars</option>
+            <option value={"50"}>50 bars</option>
+            <option value={"80"}>80 bars</option>
+            <option value={"150"}>150 bars</option>
+            <option value={"500"}>500 bars</option>
+            <option value={"1000"}>1000 bars</option>
+          </select>
+          <div className="w-full ml-10 flex flex-col">
+            <div className="font-semibold mb-1">Speed</div>
+            <input type="range" min={0} max="10" value={speed} step={1} onChange={(e) => setSpeed(e.target.value)} className="accent-secondary w-full appearance-none bg-primary border border-secondary rounded-full" />
+          </div>
         </div>
       </div>
       <div className="w-full flex flex-row items-end mt-5 h-full min-h-[52rem]">
         {items.map((item, index) => (
-          <SortingBar key={index} value={item} color={currentBar === index ? 'bg-third' : 'bg-secondary'}/>
+          <SortingBar key={index} value={item} color={currentBar === index ? 'bg-third' : 'bg-secondary'} useBorder={useBorder} />
         ))}
       </div>
       {(!isInitialState && isSorting) && <div className="w-full text-center p-3 font-semibold">Sorting...</div>}
