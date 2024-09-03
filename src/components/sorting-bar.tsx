@@ -9,11 +9,11 @@ interface SortingBarProps {
 
 export const SortingBar = ({ value, color, useBorder, initialState }: SortingBarProps) => {
   const [isHovered, setIsHovered] = useState(false);
-  const [height, setHeight] = useState("0rem");
+  const [height, setHeight] = useState("0vh");
 
   useEffect(() => {
     if (initialState) {
-      setHeight(`${value}rem`);
+      setHeight(`${value*1.5}vh`);
     }
   }, [value, initialState]);
 
@@ -21,7 +21,7 @@ export const SortingBar = ({ value, color, useBorder, initialState }: SortingBar
     <div className="flex flex-col w-full text-center font-semibold">
       {isHovered && <div className="text-secondary">{value}</div>}
       <div
-        style={{ height: initialState ? height : `${value}rem` }}
+        style={{ height: initialState ? height : `${value*1.5}vh` }}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
         className={`w-full ${useBorder && 'border border-primary'} ${color} ${

@@ -3,12 +3,14 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Particle } from "@/components/particle";
 import { motion } from "framer-motion"
+import { AuthorProfile } from "@/components/profile";
 
 export default function Home() {
   const router = useRouter();
 
   return (
-    <main className="relative min-h-screen w-screen p-5 flex font-ibm text-secondary">
+    <main className="relative min-h-screen w-screen p-5 flex font-play text-secondary">
+      <AuthorProfile />
       <Particle />
       <div className="relative flex flex-col items-center w-full justify-center z-10">
         <div className="text-4xl font-press mb-10">VisualBox</div>
@@ -20,7 +22,7 @@ export default function Home() {
             onClick={() => router.push("/linked-list")}
           >
             <img src="https://algofrus.wordpress.com/wp-content/uploads/2016/08/list.gif" className="w-80 h-auto" alt="Linked List" />
-            <div className="mt-3 font-semibold">Linked List</div>
+            <div className="mt-3">Linked List</div>
           </motion.button>
           <motion.button
             whileHover={{ scale: 1.05 }}
@@ -29,7 +31,7 @@ export default function Home() {
             onClick={() => router.push("/sorting")}
           >
             <img src="https://visualgo.net/img/gif/sorting.gif" className="w-80 h-auto" alt="Sorting" />
-            <div className="mt-3 font-semibold">Sorting</div>
+            <div className="mt-3">Sorting</div>
           </motion.button>
         </div>
       </div>

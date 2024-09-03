@@ -108,7 +108,7 @@ export default function Home() {
   };
   
   return (
-    <main className="min-h-screen w-screen p-5">
+    <main className="min-h-screen w-screen p-5 font-play">
       <input type="text" className="border-secondary text-secondary bg-transparent border p-2 mb-5" value={value} onChange={(e) => {setValue(e.target.value)}}/>
       <button 
         className="bg-secondary text-white p-2 border border-secondary ml-3 hover:shadow-lg transition hover:opacity-80"

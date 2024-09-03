@@ -232,107 +232,120 @@ export default function Home() {
   }, []);
   
   return (
-    <main className="min-h-screen w-screen p-5 font-ibm text-secondary">
-      <div className="flex flex-row justify-between">
-        <button className="hover:opacity-80 transition" onClick={() => router.push('/')}>
-          <HiMiniHome className="text-secondary text-4xl" />
-        </button>
-        <button 
-          disabled={isSorting}
-          className="bg-secondary text-white p-2 border border-secondary ml-5 hover:shadow-lg transition hover:opacity-80 disabled:opacity-60"
-          onClick={async () => {
-            if (await checkSorted()) return;
-            const start = Date.now();
-            setIsInitialState(false);
-            bubbleSort(items).then(() => {
-              setTimeElapsed((Date.now() - start) / 1000);
-              checkSorted();
-            });
-          }}
-        >
-          Bubble Sort
-        </button>
-        <button 
-          disabled={isSorting}
-          className="bg-secondary text-white p-2 border border-secondary ml-3 hover:shadow-lg transition hover:opacity-80 disabled:opacity-60"
-          onClick={async () => {
-            if (await checkSorted()) return;
-            setIsSorting(true);
-            const start = Date.now();
-            setIsInitialState(false);
-            mergeSort(items).then(() => {
-              setTimeElapsed((Date.now() - start) / 1000);
-              checkSorted();
-              setIsSorting(false);
-            });
-          }}
-        >
-          Merge Sort
-        </button>
-        <button 
-          disabled={isSorting}
-          className="bg-secondary text-white p-2 border border-secondary ml-3 hover:shadow-lg transition hover:opacity-80 disabled:opacity-60"
-          onClick={async () => {
-            if (await checkSorted()) return;
-            const start = Date.now();
-            setIsInitialState(false);
-            heapSort(items).then(() => {
-              setTimeElapsed((Date.now() - start) / 1000);
-              checkSorted();
-            });
-          }}
-        >
-          Heap Sort
-        </button>
-        <button
-          disabled={isSorting}
-          className="bg-secondary text-white p-2 border border-secondary ml-3 hover:shadow-lg transition hover:opacity-80 disabled:opacity-60"
-          onClick={async () => {
-            if (await checkSorted()) return;
-            const start = Date.now();
-            setIsInitialState(false);
-            setIsSorting(true);
-            quickSort(items).then(() => {
-            setIsSorting(false);
-            setCurrentBar(null);
-            setTimeElapsed((Date.now() - start) / 1000);
-            checkSorted();
-          })}}
-        >
-          Quick Sort
-        </button>
-        
-        <button 
-          disabled={isSorting}
-          className="bg-fourth text-white p-2 border border-third ml-3 hover:shadow-lg transition hover:opacity-80 disabled:opacity-60"
-          onClick={() => randomize()}
-        >
-          Randomize
-        </button>
-        <button 
-          className="items-center ml-3 p-3 hover:opacity-80 hover:cursor-pointer text-lg disabled:opacity-60" 
-          onClick={() => {
-            setItems([...prevItems])
-            setIsInitialState(true);
-          }}
-          disabled={isInitialState || isSorting}
-        >
-          <FaUndoAlt className="text-secondary" />
-        </button>
-        <div className="ml-auto flex w-[35%]">
-          <div className="inline-flex items-center font-ibm font-semibold">
+    <main className="min-h-screen w-screen p-5 font-play text-secondary">
+      <div className="flex flex-wrap xl:flex-nowrap xl:space-y-0 space-y-5 flex-col md:flex-row justify-between">
+        <div className="flex flex-wrap md:flex-nowrap space-y-4 md:space-y-0">
+          <button className="hover:opacity-80 transition" onClick={() => router.push('/')}>
+            <HiMiniHome className="text-secondary text-4xl" />
+          </button>
+          <button
+            disabled={isSorting}
+            className="bg-secondary text-white py-2 px-3 border border-secondary ml-5 hover:shadow-lg transition hover:opacity-80 disabled:opacity-60"
+            onClick={async () => {
+              if (await checkSorted()) return;
+              const start = Date.now();
+              setIsInitialState(false);
+              bubbleSort(items).then(() => {
+                setTimeElapsed((Date.now() - start) / 1000);
+                checkSorted();
+              });
+            }}
+          >
+            Bubble Sort
+          </button>
+          <button
+            disabled={isSorting}
+            className="bg-secondary text-white py-2 px-3 border border-secondary ml-3 hover:shadow-lg transition hover:opacity-80 disabled:opacity-60"
+            onClick={async () => {
+              if (await checkSorted()) return;
+              setIsSorting(true);
+              const start = Date.now();
+              setIsInitialState(false);
+              mergeSort(items).then(() => {
+                setTimeElapsed((Date.now() - start) / 1000);
+                checkSorted();
+                setIsSorting(false);
+              });
+            }}
+          >
+            Merge Sort
+          </button>
+          <button
+            disabled={isSorting}
+            className="bg-secondary text-white py-2 px-3 border border-secondary ml-3 hover:shadow-lg transition hover:opacity-80 disabled:opacity-60"
+            onClick={async () => {
+              if (await checkSorted()) return;
+              const start = Date.now();
+              setIsInitialState(false);
+              heapSort(items).then(() => {
+                setTimeElapsed((Date.now() - start) / 1000);
+                checkSorted();
+              });
+            }}
+          >
+            Heap Sort
+          </button>
+          <button
+            disabled={isSorting}
+            className="bg-secondary text-white py-2 px-3 border border-secondary ml-3 hover:shadow-lg transition hover:opacity-80 disabled:opacity-60"
+            onClick={async () => {
+              if (await checkSorted()) return;
+              const start = Date.now();
+              setIsInitialState(false);
+              setIsSorting(true);
+              quickSort(items).then(() => {
+                setIsSorting(false);
+                setCurrentBar(null);
+                setTimeElapsed((Date.now() - start) / 1000);
+                checkSorted();
+              });
+            }}
+          >
+            Quick Sort
+          </button>
+          <button
+            disabled={isSorting}
+            className="bg-fourth text-white py-2 px-3 border border-third ml-3 hover:shadow-lg transition hover:opacity-80 disabled:opacity-60"
+            onClick={() => randomize()}
+          >
+            Randomize
+          </button>
+          <button
+            className="items-center ml-3 p-3 hover:opacity-80 hover:cursor-pointer text-lg disabled:opacity-60"
+            onClick={() => {
+              setItems([...prevItems]);
+              setIsInitialState(true);
+            }}
+            disabled={isInitialState || isSorting}
+          >
+            <FaUndoAlt className="text-secondary" />
+          </button>
+        </div>
+
+        <div className="flex flex-wrap md:flex-nowrap mt-4 md:mt-0 w-full md:w-auto space-y-4 md:space-y-0">
+          <div className="inline-flex items-center font-play font-semibold">
             <label className="flex items-center cursor-pointer relative" htmlFor="check-smooth-animation">
-              <input type="checkbox"
+              <input
+                type="checkbox"
                 checked={useSmoothAnimation}
                 onChange={(e) => setUseSmoothAnimation(e.target.checked)}
                 className="peer h-5 w-5 cursor-pointer transition-all appearance-none rounded hover:shadow-md border-secondary border-2 checked:bg-secondary checked:border-secondary"
-                id="check-smooth-animation" />
+                id="check-smooth-animation"
+              />
               <span className="absolute text-white opacity-0 peer-checked:opacity-100 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor"
-                  stroke="currentColor" strokeWidth="1">
-                  <path fillRule="evenodd"
-                  d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                  clipRule="evenodd"></path>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-3.5 w-3.5"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                  stroke="currentColor"
+                  strokeWidth="1"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                    clipRule="evenodd"
+                  />
                 </svg>
               </span>
             </label>
@@ -340,32 +353,42 @@ export default function Home() {
               Smooth Animation
             </label>
           </div>
-          <div className="inline-flex items-center font-ibm font-semibold ml-10">
+          <div className="inline-flex items-center font-play font-semibold ml-0 md:ml-10">
             <label className="flex items-center cursor-pointer relative" htmlFor="check-spacing">
-              <input type="checkbox"
+              <input
+                type="checkbox"
                 checked={useBorder}
                 onChange={(e) => setUseBorder(e.target.checked)}
                 className="peer h-5 w-5 cursor-pointer transition-all appearance-none rounded hover:shadow-md border-secondary border-2 checked:bg-secondary checked:border-secondary"
-                id="check-spacing" />
+                id="check-spacing"
+              />
               <span className="absolute text-white opacity-0 peer-checked:opacity-100 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor"
-                  stroke="currentColor" strokeWidth="1">
-                  <path fillRule="evenodd"
-                  d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                  clipRule="evenodd"></path>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-3.5 w-3.5"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                  stroke="currentColor"
+                  strokeWidth="1"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                    clipRule="evenodd"
+                  />
                 </svg>
               </span>
             </label>
-            <label className="cursor-pointer ml-2 text-secondary whitespace-nowrap" htmlFor="check-2">
+            <label className="cursor-pointer ml-2 text-secondary whitespace-nowrap" htmlFor="check-spacing">
               Spacing
             </label>
           </div>
-          <select 
+          <select
             onChange={(e) => {
               setNumberOfBars(e.target.value);
-            }} 
-            value={numberOfBars} 
-            className="optional:bg-primary border border-secondary font-semibold rounded-lg ml-10 px-2"
+            }}
+            value={numberOfBars}
+            className="optional:bg-primary border-2 border-secondary font-semibold rounded-lg ml-0 md:ml-10 px-2 hover:cursor-pointer"
           >
             <option value={"10"}>10 bars</option>
             <option value={"25"}>25 bars</option>
@@ -375,13 +398,21 @@ export default function Home() {
             <option value={"500"}>500 bars</option>
             <option value={"1000"}>1000 bars</option>
           </select>
-          <div className="w-full ml-10 flex flex-col">
+          <div className="w-full ml-0 md:ml-10 flex flex-col">
             <div className="font-semibold mb-1">Speed</div>
-            <input type="range" min={0} max="10" value={speed} step={1} onChange={(e) => setSpeed(e.target.value)} className="accent-secondary w-full appearance-none bg-primary border border-secondary rounded-full" />
+            <input
+              type="range"
+              min={0}
+              max="10"
+              value={speed}
+              step={1}
+              onChange={(e) => setSpeed(e.target.value)}
+              className="hover:cursor-pointer w-full appearance-none accent-secondary bg-primary border-2 border-secondary rounded-full"
+            />
           </div>
         </div>
       </div>
-      <div className="w-full flex flex-row items-end mt-5 h-full min-h-[52rem]">
+      <div className="w-full flex flex-row items-end mt-5 h-full min-h-[78vh]">
         {items.map((item, index) => (
           <SortingBar key={index} value={item} color={currentBar === index ? 'bg-third' : 'bg-secondary'} useBorder={useBorder} initialState={isInitialState || useSmoothAnimation} />
         ))}
