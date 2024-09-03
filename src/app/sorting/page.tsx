@@ -53,6 +53,7 @@ export default function Home() {
       await new Promise<void>((resolve) => setTimeout(resolve, 5));
     }
     setCurrentBar(null);
+    return true;
   };
 
   const bubbleSort = async (arr: number[]) => {
