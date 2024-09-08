@@ -33,6 +33,15 @@ export default function Home() {
             <img src="https://visualgo.net/img/gif/sorting.gif" className="w-80 h-auto" alt="Sorting" />
             <div className="mt-3">Sorting</div>
           </motion.button>
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="p-5 bg-secondary text-white text-xl w-fit h-fit"
+            onClick={() => router.push("/tree")}
+          >
+            <img src="https://i.pinimg.com/originals/6c/ec/43/6cec43366597fe72f85b8a81f9ecb455.gif" className="w-80 h-auto" alt="Tree" />
+            <div className="mt-3">Tree</div>
+          </motion.button>
         </div>
       </div>
     </main>
